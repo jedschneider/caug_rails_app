@@ -1,0 +1,32 @@
+<h1>Listing us_states</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Flu report</th>
+    <th>Cases</th>
+    <th>Confirmed</th>
+    <th>Negative</th>
+    <th>Suspected</th>
+    <th>Fatal</th>
+  </tr>
+
+<% @us_states.each do |us_state| %>
+  <tr>
+    <td><%=h us_state.name %></td>
+    <td><%=h us_state.flu_report_id %></td>
+    <td><%=h us_state.cases %></td>
+    <td><%=h us_state.confirmed %></td>
+    <td><%=h us_state.negative %></td>
+    <td><%=h us_state.suspected %></td>
+    <td><%=h us_state.fatal %></td>
+    <td><%= link_to 'Show', us_state %></td>
+    <td><%= link_to 'Edit', edit_us_state_path(us_state) %></td>
+    <td><%= link_to 'Destroy', us_state, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New us_state', new_us_state_path %>

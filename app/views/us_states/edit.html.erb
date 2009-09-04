@@ -1,0 +1,40 @@
+<h1>Editing us_state</h1>
+
+<% form_for(@us_state) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :flu_report_id %><br />
+    <%= f.text_field :flu_report_id %>
+  </p>
+  <p>
+    <%= f.label :cases %><br />
+    <%= f.text_field :cases %>
+  </p>
+  <p>
+    <%= f.label :confirmed %><br />
+    <%= f.text_field :confirmed %>
+  </p>
+  <p>
+    <%= f.label :negative %><br />
+    <%= f.text_field :negative %>
+  </p>
+  <p>
+    <%= f.label :suspected %><br />
+    <%= f.text_field :suspected %>
+  </p>
+  <p>
+    <%= f.label :fatal %><br />
+    <%= f.text_field :fatal %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @us_state %> |
+<%= link_to 'Back', us_states_path %>

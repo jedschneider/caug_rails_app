@@ -1,0 +1,5 @@
+<%= @all_reports.class %>  <br />
+<% @all_reports.each do |report| %>
+      <p><%= report.id %>  <%= report.created_at %> <%= report.report_date%>
+      </p>
+<% end %>

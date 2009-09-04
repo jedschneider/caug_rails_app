@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: 
+  flu_report_id: 
+  cases: 
+  confirmed: 
+  negative: 
+  suspected: 
+  fatal: 1
+
+two:
+  name: 
+  flu_report_id: 
+  cases: 
+  confirmed: 
+  negative: 
+  suspected: 
+  fatal: 1

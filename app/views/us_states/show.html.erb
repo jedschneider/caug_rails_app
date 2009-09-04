@@ -1,0 +1,38 @@
+<p>
+  <b>Name:</b>
+  <%=h @us_state.name %>
+</p>
+
+<p>
+  <b>Flu report:</b>
+  <%=h @us_state.flu_report_id %>
+</p>
+
+<p>
+  <b>Cases:</b>
+  <%=h @us_state.cases %>
+</p>
+
+<p>
+  <b>Confirmed:</b>
+  <%=h @us_state.confirmed %>
+</p>
+
+<p>
+  <b>Negative:</b>
+  <%=h @us_state.negative %>
+</p>
+
+<p>
+  <b>Suspected:</b>
+  <%=h @us_state.suspected %>
+</p>
+
+<p>
+  <b>Fatal:</b>
+  <%=h @us_state.fatal %>
+</p>
+
+
+<%= link_to 'Edit', edit_us_state_path(@us_state) %> |
+<%= link_to 'Back', us_states_path %>
