@@ -1,0 +1,4 @@
+<% @all_reports.each do |report| %>
+      <p>Date of report: <%= report.report_date%> Confirmed cases: <%= report.confirmed  %> Fatal Cases: <%= report.fatal %> <%= link_to "Show Report", flu_report_path(report.id) %>
+      </p>
+<% end %>

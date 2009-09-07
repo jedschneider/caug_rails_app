@@ -1,0 +1,12 @@
+<h2>Flu Report for <%= @report.report_date %></h2>
+<%= @report.class %>
+<%= @report.attributes.class %>
+<p> Total number of reported cases: <%= @cases %>     <br />
+Confirmed cases: <%= @confirmed %>     <br />
+Suspected cases: <%= @suspected %>     <br />
+Fatal cases: <%= @fatal %>     <br />
+
+<% @report.us_states.each do |state| %>
+   <p>State: <%= state.name %>, Total Cases: <%= state.cases %>, Confirmed: <%= state.confirmed %>, Fatal: <%= state.fatal %></p>
+<% end %>
+<%#= @report.attributes.r_cases %>
