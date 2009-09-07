@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :flu_reports
+  map.resources :flu_report, :has_many => :us_states
   #map.resources :us_states
 
   # The priority is based upon order of creation: first created -> highest priority.

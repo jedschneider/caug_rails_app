@@ -5,7 +5,8 @@ class FluReportsController < ApplicationController
   before_filter :get_new_reports
   
   def index
-    @all_reports = FluReport.all
+    @all_reports = FluReport.find(:all, :order=>'report_date')
+
     respond_to do |format|
       format.html
       format.xml {render :xml => @all_reports}
@@ -13,6 +14,12 @@ class FluReportsController < ApplicationController
   end
 
   def show
+    total_flu_data(params[:id])
+    @report = FluReport.find_by_id(params[:id])
+    respond_to do |format|
+      format.html
+      format.xml {render :xml=>@report.us_states}
+    end
   end
 
   def get_new_reports
@@ -29,7 +36,9 @@ class FluReportsController < ApplicationController
         @json = flu_report.get_json_data(report) #=> array of json data
         fr = FluReport.new(:report_date=>report_date)
         if fr.save
-           add_states_data(fr.id, flu_report.report_url(report), @json)
+          add_states_data(fr.id, flu_report.report_url(report), @json)
+          total_flu_data(fr.id)
+          FluReport.update(fr.id, :confirmed=> @confirmed, :suspected=>@suspected, :fatal=>@fatal)
         end
       end
 
@@ -55,6 +64,7 @@ class FluReportsController < ApplicationController
     us_states = US_STATES.new
     us_states.states.each do |state|
       name = state
+      cases=confirmed=negative=suspected=fatal=0   
       cases = json_parse.get_value_for_state("cases", state)
       confirmed = json_parse.get_value_for_state('Confirmed', state)
       negative = json_parse.get_value_for_state('Negative',state)
@@ -64,4 +74,14 @@ class FluReportsController < ApplicationController
       s.save
     end
   end
+
+  def total_flu_data(flu_report_id)
+    @report = FluReport.find_by_id(flu_report_id)
+    @cases=@fatal=@suspected=@confirmed=0
+    @report.us_states.collect(&:cases).each {|cases| @cases += cases}
+    @report.us_states.collect(&:confirmed).each { |con| @confirmed += con }
+    @report.us_states.collect(&:suspected).each { |sus| @suspected += sus }
+    @report.us_states.collect(&:fatal).each {|fatal| @fatal += fatal }
+    @report.attributes[:confirmed] = @confirmed
+  end  
 end
