@@ -1,4 +1,0 @@
-<% @all_reports.each do |report| %>
-      <p>Date of report: <%= report.report_date%> Confirmed cases: <%= report.confirmed  %> Fatal Cases: <%= report.fatal %> <%= link_to "Show Report", :controller=>'flu_reports', :action=> 'show', :id=> report %>
-      </p>
-<% end %>
